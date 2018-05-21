@@ -22,7 +22,7 @@ app.use(function (req, res, next) {
     // Pass to next layer of middleware
     next();
 });
-
+var port = process.env.PORT || 4000;
 //parse
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -288,6 +288,6 @@ app.get('/', function (req, res) {
     appFuctions.getPaymentconfirm(req,res);
   });
 // port connect server 
-app.listen(function () {
-  console.log('Runing...')
+app.listen(port,"0.0.0.0",function () {
+  console.log("Listening on Port "+port);
 })
