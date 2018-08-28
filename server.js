@@ -4,34 +4,66 @@ require('dotenv').config();
 var mysql = require('mysql');
 var appFuctions = require('./appFuctions.js');
 
+// app.use(function (req, res, next) {
+
+//     // Website you wish to allow to connect
+//     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8100');
+
+//     // Request methods you wish to allow
+//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+
+//     // Request headers you wish to allow
+//     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+
+//     // Set to true if you need the website to include cookies in the requests sent
+//     // to the API (e.g. in case you use sessions)
+//     res.setHeader('Access-Control-Allow-Credentials', true);
+
+//     // Pass to next layer of middleware
+//     next();
+// });
+
+
+// var port = process.env.PORT || 4000;
+// //parse
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({
+// 	extended: true
+// }));
+
+// app.get('/', function (req, res) {
+//   res.send('!!!!!!!!!')
+//   console.log("homeStart")
+// })
+
 app.use(function (req, res, next) {
 
-    // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8100');
+  // Website you wish to allow to connect
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8100');
 
-    // Request methods you wish to allow
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  // Request methods you wish to allow
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
 
-    // Request headers you wish to allow
-    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+  // Request headers you wish to allow
+  res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
 
-    // Set to true if you need the website to include cookies in the requests sent
-    // to the API (e.g. in case you use sessions)
-    res.setHeader('Access-Control-Allow-Credentials', true);
+  // Set to true if you need the website to include cookies in the requests sent
+  // to the API (e.g. in case you use sessions)
+  res.setHeader('Access-Control-Allow-Credentials', true);
 
-    // Pass to next layer of middleware
-    next();
+  // Pass to next layer of middleware
+  next();
 });
-var port = process.env.PORT || 4000;
+
 //parse
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
-	extended: true
+extended: true
 }));
 
 app.get('/', function (req, res) {
-  res.send('!!!!!!!!!')
-  console.log("homeStart")
+res.send('!!!!!!!!!')
+console.log("homeStart")
 })
 
 
@@ -95,9 +127,7 @@ app.get('/', function (req, res) {
   });
 
   app.post('/SearchItems',function(req,res){
-    console.log(req.body.user_status)
-    console.log(req.body.selectItems)
-    console.log(req.body.search)
+    console.log(req.body.see)
     appFuctions.SearchItems(req,res);
   });
 
@@ -287,7 +317,28 @@ app.get('/', function (req, res) {
     console.log(req.body.order_id)
     appFuctions.getPaymentconfirm(req,res);
   });
+
+  
+  app.post('/selectProvince',function(req,res){
+    console.log(req.body.province)
+    appFuctions.selectProvince(req,res);
+  });
+  
+  app.post('/Checkstatus',function(req,res){
+    console.log(req.body.user_id)
+    appFuctions.Checkstatus(req,res);
+  });
+
+  app.post('/getStoreforMap',function(req,res){
+    console.log(req.body.store_id)
+    appFuctions.getStoreforMap(req,res);
+  });
+
 // port connect server 
 app.listen(port,"0.0.0.0",function () {
   console.log("Listening on Port "+port);
 })
+
+// app.listen(4000, function () {
+//   console.log('Runing 4000!')
+// })
