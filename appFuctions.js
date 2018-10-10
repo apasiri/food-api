@@ -1766,3 +1766,23 @@ exports.getStoreforMap = function (req, res)
                                      
         });                     
 }
+
+exports.goCoin = function (req, res) 
+{  
+    
+	var con = mysql.createConnection({
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database : process.env.DB_NAME
+    });
+
+    var user_payment = req.body.user_payment
+    var user_id = req.body.user_id
+
+    sql = `UPDATE user SET user_location = ? where user_id = ?`;
+    con.query(sql, [user_payment,user_id], function (err, result){if (err) throw err;
+        res.send([{Alert:1,Comment:'ดำเนินการสำเร็จ'}]);
+        con.end(); 
+    });                     
+}

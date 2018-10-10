@@ -7,7 +7,7 @@ var appFuctions = require('./appFuctions.js');
 app.use(function (req, res, next) {
 
     // Website you wish to allow to connect
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8100');
+    res.setHeader('Access-Control-Allow-Origin', '*');
 
     // Request methods you wish to allow
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -332,6 +332,11 @@ app.get('/', function (req, res) {
   app.post('/getStoreforMap',function(req,res){
     console.log(req.body.store_id)
     appFuctions.getStoreforMap(req,res);
+  });
+  
+  app.post('/goCoin',function(req,res){
+    console.log(req.body.user_payment)
+    appFuctions.goCoin(req,res);
   });
 
 // port connect server 
