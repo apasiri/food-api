@@ -1799,7 +1799,7 @@ exports.getCoin = function (req, res)
 
     var user_id = req.body.user_id
 
-        sql = `SELECT * FROM store WHERE user_id = ? `;
+        sql = `SELECT * FROM users WHERE user_id = ? `;
         con.query(sql, [user_id], function (err, result){if (err) throw err;
             
                     res.send(result);
