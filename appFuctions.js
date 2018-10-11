@@ -1786,3 +1786,25 @@ exports.goCoin = function (req, res)
         con.end();
     });                     
 }
+
+exports.getCoin = function (req, res) 
+{  
+    
+	var con = mysql.createConnection({
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database : process.env.DB_NAME
+    });
+
+    var user_id = req.body.user_id
+
+        sql = `SELECT * FROM store WHERE user_id = ? `;
+        con.query(sql, [user_id], function (err, result){if (err) throw err;
+            
+                    res.send(result);
+                    console.log(result);
+                    con.end();
+                                     
+        });                     
+}

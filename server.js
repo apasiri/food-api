@@ -339,6 +339,11 @@ app.get('/', function (req, res) {
     appFuctions.goCoin(req,res);
   });
 
+  app.post('/getCoin',function(req,res){
+    console.log(req.body.user_id)
+    appFuctions.getCoin(req,res);
+  });
+
 // port connect server 
 app.listen(port,"0.0.0.0",function () {
   console.log("Listening on Port "+port);
