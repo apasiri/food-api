@@ -1780,9 +1780,9 @@ exports.goCoin = function (req, res)
     var user_payment = req.body.user_payment
     var user_id = req.body.user_id
 
-    sql = `UPDATE user SET user_location = ? where user_id = ?`;
+    sql = `UPDATE users SET user_location = ? where user_id = ?`;
     con.query(sql, [user_payment,user_id], function (err, result){if (err) throw err;
         res.send([{Alert:1,Comment:'ดำเนินการสำเร็จ'}]);
-        con.end(); 
+        con.end();
     });                     
 }
